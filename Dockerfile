@@ -1,8 +1,8 @@
 FROM php:8.3-apache
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libicu-dev libzip-dev unzip git \
-    && docker-php-ext-install intl zip \
+    && apt-get install -y --no-install-recommends libicu-dev libonig-dev libzip-dev unzip git \
+    && docker-php-ext-install intl mbstring zip \
     && a2enmod rewrite \
     && sed -i 's/Listen 80/Listen 10000/' /etc/apache2/ports.conf \
     && rm -rf /var/lib/apt/lists/*
