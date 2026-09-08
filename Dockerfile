@@ -17,6 +17,8 @@ RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoload
 COPY . ./
 COPY docker/apache-vhost.conf /etc/apache2/sites-available/000-default.conf
 
-RUN chown -R www-data:www-data writable
+RUN mkdir -p writable/cache writable/debugbar writable/logs writable/session writable/uploads \
+    && chown -R www-data:www-data writable \
+    && chmod -R ug+rwX writable
 
 EXPOSE 10000
